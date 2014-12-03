@@ -1,9 +1,16 @@
-<p>
-  key1 の値は<?php echo $key1; ?><br />
-  key2 の値は<?php echo $key2; ?><br />
-</p>
-<p>
-  Application モジュールの<br />
-  UserController コントローラの<br />
-  addAction アクションが呼ばれました。<br />
-</p>
+<?php
+$form = $this->form;
+$form->setAttribute(
+    'action',
+    $this->url('application', ['controller' => 'user', 'action' => 'add'])
+);
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('name'));
+echo $this->formRow($form->get('email'));
+echo $this->formRow($form->get('password'));
+echo $this->formRow($form->get('comment'));
+echo $this->formRow($form->get('url'));
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
