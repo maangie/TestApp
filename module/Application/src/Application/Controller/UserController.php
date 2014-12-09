@@ -5,6 +5,8 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Model\User;
 
+use Zend\I18n\Translator\Translator;
+
 use Application\Form\UserForm;
 
 class UserController extends AbstractActionController {
@@ -35,11 +37,6 @@ class UserController extends AbstractActionController {
             $user = new User();
             $form->setInputFilter($user->getInputFilter());
             $form->setData($request->getPost());
-
-            // $this->getTranslator()->addTranslationFile(
-            //     'phparray',
-            //     'resources/languages/ja/Zend_Validate.php'
-            // );
 
             if ($form->isValid()) {
                 // データベースへの登録

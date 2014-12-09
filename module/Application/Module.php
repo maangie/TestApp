@@ -23,6 +23,20 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+
+        $sm = $e->getApplication()->getServiceManager();
+        $translator = $sm->get('MvcTranslator');
+        $translator->addTranslationFile(
+            'phpArray',
+            'vendor/zendframework/zendframework/resources/languages/ja/' .
+            'Zend_Validate.php',
+            'default',
+            'ja_JP'
+        );
+
+        \Zend\Validator\AbstractValidator::setDefaultTranslator(
+            new \Zend\Mvc\I18n\Translator($translator)
+        );
     }
 
     public function getConfig()
